@@ -1,5 +1,5 @@
-from django.db import models
 import django.utils.timezone
+from django.db import models
 
 
 def format_duration(seconds):
@@ -30,7 +30,7 @@ class Visit(models.Model):
         return "{user} entered at {entered} {leaved}".format(
             user=self.passcard.owner_name,
             entered=self.entered_at,
-            leaved= "leaved at " + str(self.leaved_at) if self.leaved_at else "not leaved"
+            leaved="leaved at " + str(self.leaved_at) if self.leaved_at else "not leaved"
         )
 
     def get_duration(self):
@@ -41,6 +41,4 @@ class Visit(models.Model):
 
     def is_long(self, minutes=60):
         duration = self.get_duration()
-        if duration // 60 > minutes:
-            return True
-        return False
+        return duration // 60 > minutes
